@@ -13,4 +13,7 @@
     <string name="textView_char_originLabel">Origin</string>
     <string name="textView_char_locationLabel">Location</string>
     <string name="textView_char_episodesLabel">Appears in<br>Episodes</br></string>
+
+    <string name="textView_loc_typeLabel">Type</string>
+    <string name="textView_loc_dimensionLabel">Dimension</string>
 </resources>
