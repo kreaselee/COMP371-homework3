@@ -53,6 +53,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -74,13 +75,10 @@
                 android:text="" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -102,13 +100,10 @@
                 android:text="" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -130,13 +125,10 @@
                 android:text="" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -158,13 +150,10 @@
                 android:text="" />
         </LinearLayout>
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -185,10 +174,6 @@
                 android:layout_weight="1"
                 android:text="" />
         </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="2dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
