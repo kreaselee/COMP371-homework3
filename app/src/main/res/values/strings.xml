@@ -1,8 +1,16 @@
 <resources>
     <string name="app_name">Homework3</string>
 
+    <string name="imageView_contentDesc">Image</string>
+
     <string name="tabLabel_character">Character</string>
     <string name="tabLabel_episode">Episode</string>
     <string name="tabLabel_location">Location</string>
 
+    <string name="textView_char_statusLabel">Status</string>
+    <string name="textView_char_speciesLabel">Species</string>
+    <string name="textView_char_genderLabel">Gender</string>
+    <string name="textView_char_originLabel">Origin</string>
+    <string name="textView_char_locationLabel">Location</string>
+    <string name="textView_char_episodesLabel">Appears in<br>Episodes</br></string>
 </resources>

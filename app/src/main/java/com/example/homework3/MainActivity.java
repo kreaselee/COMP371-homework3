@@ -11,13 +11,15 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.loopj.android.http.AsyncHttpClient;
 
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
-    private ViewPager2 viewPager;
+    // private ViewPager2 viewPager;
 
     private static final String api_url="https://rickandmortyapi.com/api";
+    private static AsyncHttpClient client = new AsyncHttpClient();
 
     // TabLayout tabLayout;
 
