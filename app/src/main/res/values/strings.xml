@@ -16,4 +16,9 @@
 
     <string name="textView_loc_typeLabel">Type</string>
     <string name="textView_loc_dimensionLabel">Dimension</string>
+
+    <string name="textView_ep_dateLabel">Aired On</string>
+    <string name="textView_ep_charactersLabel">Starring Characters</string>
+    <string name="button_ep_moreInfo">More Information</string>
+
 </resources>
