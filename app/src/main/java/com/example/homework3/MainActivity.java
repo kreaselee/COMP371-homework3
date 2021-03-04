@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             JSONObject json = new JSONObject(new String(responseBody));
+                            Bundle bundle = new Bundle();
 
                             // load fragment based on tab position
                             // first tab - characters
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                             // third tab - locations
                             if (position == 0) {
                                 String url = json.getString("characters");
-                                Bundle bundle = new Bundle();
+                                // Bundle bundle = new Bundle();
                                 bundle.putString("url", url);
                                 CharacterFragment characterFragment = new CharacterFragment();
                                 characterFragment.setArguments(bundle);
@@ -69,12 +70,18 @@ public class MainActivity extends AppCompatActivity {
                             }
                             else if (position == 1) {
                                 String url = json.getString("episodes");
+                                // Bundle bundle = new Bundle();
+                                bundle.putString("url", url);
                                 EpisodeFragment episodeFragment = new EpisodeFragment();
+                                episodeFragment.setArguments(bundle);
                                 loadFragment(episodeFragment);
                             }
                             else if (position == 2) {
                                 String url = json.getString("locations");
+                                System.out.println(url);
+                                bundle.putString("url", url);
                                 LocationFragment locationFragment = new LocationFragment();
+                                locationFragment.setArguments(bundle);
                                 loadFragment(locationFragment);
                             }
                         }
