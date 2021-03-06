@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +33,7 @@ public class LocationFragment extends Fragment {
     private String api_url;
     private static AsyncHttpClient client = new AsyncHttpClient();
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_location, container, false);
@@ -39,6 +42,13 @@ public class LocationFragment extends Fragment {
         locations = new ArrayList<>();
 
         api_url = getArguments().getString("url");
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         client.addHeader("Accept", "application/json");
         // send a get request to the api url
@@ -73,6 +83,7 @@ public class LocationFragment extends Fragment {
                     // add a line between each row
                     RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
                     recyclerView.addItemDecoration(itemDecoration);
+
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
@@ -85,8 +96,5 @@ public class LocationFragment extends Fragment {
 
             }
         });
-
-
-        return view;
     }
 }

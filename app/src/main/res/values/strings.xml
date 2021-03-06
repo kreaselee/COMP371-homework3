@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Homework3</string>
 
-    <string name="imageView_contentDesc">Image</string>
+    <string name="imageView_contentDesc">Image of character</string>
 
     <string name="tabLabel_character">Character</string>
     <string name="tabLabel_episode">Episode</string>

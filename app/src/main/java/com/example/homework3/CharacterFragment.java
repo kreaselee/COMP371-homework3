@@ -75,6 +75,14 @@ public class CharacterFragment extends Fragment {
 
         api_url = getArguments().getString("url");
 
+        // return view
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         client.addHeader("Accept", "application/json");
         // send a get request to the api url
         client.get(api_url, new AsyncHttpResponseHandler() {
@@ -150,10 +158,6 @@ public class CharacterFragment extends Fragment {
                 Log.e("api error", new String(responseBody));
             }
         });
-
-        // return view
-        return view;
     }
-
 }
 

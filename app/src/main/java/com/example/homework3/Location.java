@@ -13,7 +13,7 @@ public class Location {
         this.dimension = dimension;
     }
 
-    // get setters and getters for each variable
+    // setters and getters for each variable
     public String getName() {
         return name;
     }
