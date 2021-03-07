@@ -56,7 +56,7 @@ public class CharacterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_character, container, false);
 
-        // set views by id
+        // find views by id
         textView_name = view.findViewById(R.id.textView_char_name);
         imageView_char = view.findViewById(R.id.imageView_char);
         textView_status = view.findViewById(R.id.textView_char_status);
@@ -94,6 +94,7 @@ public class CharacterFragment extends Fragment {
                     JSONObject json = new JSONObject(new String(responseBody));
                     JSONObject info = json.getJSONObject("info");
 
+                    // get random id and construct url
                     int count = info.getInt("count");
                     Random random = new Random();
                     int id = random.nextInt(count)+1;
@@ -106,7 +107,7 @@ public class CharacterFragment extends Fragment {
                             Log.d("api response", new String(responseBody));
 
                             // set labels
-                            // did this here to ensure that all information loads simultaneously
+                            // do this here to ensure that all information loads simultaneously
                             textView_statusLabel.setText("Status");
                             textView_speciesLabel.setText("Species");
                             textView_genderLabel.setText("Gender");
@@ -117,6 +118,7 @@ public class CharacterFragment extends Fragment {
                             try {
                                 JSONObject json = new JSONObject(new String(responseBody));
 
+                                // set views accordingly
                                 textView_name.setText(json.getString("name"));
                                 Picasso.get().load(json.getString("image")).into(imageView_char);
                                 textView_status.setText(json.getString("status"));

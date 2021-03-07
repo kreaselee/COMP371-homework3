@@ -51,8 +51,6 @@ public class EpisodeFragment extends Fragment {
     private RecyclerView recyclerView_characters;
 
     private ArrayList<Character> characters;
-    private ArrayList<String> imageUrls;
-    private ArrayList<String> names;
 
     private Button button_moreInfo;
 
@@ -63,6 +61,7 @@ public class EpisodeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_episode, container, false);
 
+        // find views by id
         textView_number = view.findViewById(R.id.textView_ep_number);
         textView_name = view.findViewById(R.id.textView_ep_name);
         textView_date = view.findViewById(R.id.textView_ep_date);
@@ -73,8 +72,6 @@ public class EpisodeFragment extends Fragment {
 
         recyclerView_characters = view.findViewById(R.id.recyclerView_ep_characters);
         characters = new ArrayList<>();
-        imageUrls = new ArrayList<>();
-        names = new ArrayList<>();
 
         api_url = getArguments().getString("url");
 
@@ -96,6 +93,7 @@ public class EpisodeFragment extends Fragment {
                     JSONObject json = new JSONObject(new String(responseBody));
                     JSONObject info = json.getJSONObject("info");
 
+                    // get random id and construct url
                     int count = info.getInt("count");
                     Random random = new Random();
                     int id = random.nextInt(count)+1;
@@ -120,6 +118,7 @@ public class EpisodeFragment extends Fragment {
                                 String number = json.getString("episode");
                                 String name = json.getString("name");
 
+                                // set views accordingly
                                 textView_number.setText(number);
                                 textView_name.setText(name);
                                 textView_date.setText(json.getString("air_date"));
@@ -161,8 +160,9 @@ public class EpisodeFragment extends Fragment {
         });
     }
 
+    // method to send notification
     public void sendNotification(String number, String name) {
-        int NOTIFICATION_ID = 234;
+        int NOTIFICATION_ID = 14;
         NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
         String CHANNEL_ID="";
 
@@ -200,6 +200,7 @@ public class EpisodeFragment extends Fragment {
         notificationManager.notify(NOTIFICATION_ID, builder.build());
     }
 
+    // to set recyclerView with starring characters
     public void getCharInfo(String url, ArrayList<Character> list, RecyclerView recyclerView, int position, int last) {
         // get character info based on id
         client.addHeader("Accept", "application/json");
@@ -220,7 +221,7 @@ public class EpisodeFragment extends Fragment {
                 }
                 finally {
                     if (position == last) {
-                        // create location adapter to pass in the data
+                        // create character adapter to pass in the data
                         CharacterAdapter adapter = new CharacterAdapter(list);
                         // attach the adapter to the recycler view to populate
                         recyclerView.setAdapter(adapter);

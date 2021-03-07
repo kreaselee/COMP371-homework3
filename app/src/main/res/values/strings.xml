@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Homework3</string>
+    <string name="app_name">Rick and Morty</string>
 
     <string name="imageView_contentDesc">Image of character</string>
 

@@ -38,6 +38,7 @@ public class LocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_location, container, false);
 
+        // find view by id
         recyclerView = view.findViewById(R.id.recyclerView_loc);
         locations = new ArrayList<>();
 
