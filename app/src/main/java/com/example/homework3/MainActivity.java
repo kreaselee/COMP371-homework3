@@ -1,7 +1,6 @@
 package com.example.homework3;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,7 +14,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,39 +62,6 @@ public class MainActivity extends AppCompatActivity {
                             // third tab - locations
                             if (position == 0) {
                                 String url = json.getString("characters");
-
-
-                                    client.addHeader("Accept", "application/json");
-                                    // send a get request to the api url
-                                    client.get(api_url, new AsyncHttpResponseHandler() {
-                                        @Override
-                                        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                                            Log.d("api response", new String(responseBody));
-
-                                            try {
-                                                JSONObject json = new JSONObject(new String(responseBody));
-                                                JSONObject info = json.getJSONObject("info");
-
-                                                int count = info.getInt("count");
-                                                Random random = new Random();
-                                                int id = random.nextInt(count)+1;
-                                                String new_url = api_url + "/" + id;
-
-
-                                            }
-                                            catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        }
-
-                                        @Override
-                                        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                                            Log.e("api error", new String(responseBody));
-                                        }
-                                    });
-
-
                                 // Bundle bundle = new Bundle();
                                 bundle.putString("url", url);
                                 CharacterFragment characterFragment = new CharacterFragment();
@@ -141,7 +106,60 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
 
+                // add header to client
+                client.addHeader("Accept", "application/json");
+                // send a get request to the api url
+                client.get(api_url, new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                        Log.d("api response", new String(responseBody));
+
+                        try {
+                            JSONObject json = new JSONObject(new String(responseBody));
+                            Bundle bundle = new Bundle();
+
+                            // load fragment based on tab position
+                            // first tab - characters
+                            // second tab - episodes
+                            // third tab - locations
+                            if (position == 0) {
+                                String url = json.getString("characters");
+                                // Bundle bundle = new Bundle();
+                                bundle.putString("url", url);
+                                CharacterFragment characterFragment = new CharacterFragment();
+                                characterFragment.setArguments(bundle);
+                                loadFragment(characterFragment);
+                            }
+                            else if (position == 1) {
+                                String url = json.getString("episodes");
+                                // Bundle bundle = new Bundle();
+                                bundle.putString("url", url);
+                                EpisodeFragment episodeFragment = new EpisodeFragment();
+                                episodeFragment.setArguments(bundle);
+                                loadFragment(episodeFragment);
+                            }
+                            else if (position == 2) {
+                                String url = json.getString("locations");
+                                System.out.println(url);
+                                bundle.putString("url", url);
+                                LocationFragment locationFragment = new LocationFragment();
+                                locationFragment.setArguments(bundle);
+                                loadFragment(locationFragment);
+                            }
+                        }
+                        catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                        Log.e("api error", new String(responseBody));
+                    }
+                });
             }
         });
 
@@ -153,6 +171,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.fragmentContainerView, fragment);
         fragmentTransaction.commit();
     }
-
 
 }
