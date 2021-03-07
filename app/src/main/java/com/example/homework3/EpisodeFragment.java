@@ -179,7 +179,9 @@ public class EpisodeFragment extends Fragment {
             notificationManager.createNotificationChannel(channel);
         }
 
-        String infoUrl = "https://rickandmorty.fandom.com/wiki/" + name.replace(" ", "_");
+        String underscore = name.replace(" ", "_");
+        String noComma = underscore.replace(",", "");
+        String infoUrl = "https://rickandmorty.fandom.com/wiki/" + noComma;
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(getActivity(), CHANNEL_ID)
                 .setAutoCancel(true)
